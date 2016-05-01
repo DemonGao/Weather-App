@@ -1,0 +1,97 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+div{
+	box-sizing: border-box;
+}
+html{
+	font-size: 10px;
+}
+
+.weatherBox{
+	padding-top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: deepskyblue;
+	color: #FFFFFF;
+}
+.weatherTitle{
+	width: 100%;
+	/*height: 40rem;*/
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #999999;
+	border-top: 1px solid transparent;
+}
+.weatherTitle .title_header{
+	padding: 0 1rem;
+	height: 3rem;
+}
+.title_header .title_cityname,.title_header .title_nowdate{
+	color: #FFFFFF;
+	float: left;
+	/*display: inline-block;*/
+	width: 50%;
+}
+.title_header .title_cityname{
+	float: right;
+	text-align: right;
+}
+.title_temperature{
+	padding-top: 11rem;
+	text-align: center;
+	font-size: 7rem;
+	line-height: 7rem;
+	height: 18rem;
+	margin-bottom: 1rem;
+}
+.title_temperature span{
+	position: absolute;
+	font-size: 1rem;
+	margin-top: 2rem;
+}
+.title_info{
+	text-align: center;
+	/*height: 2rem;*/
+	/*line-height: 2rem;
+	font-size: 2rem;*/
+}
+.title_info span{
+	vertical-align: top;
+	line-height: 3rem;
+}
+.title_info img{
+	/*float: left;*/
+	width: 3rem;
+	height: 3rem;
+}
+.weatherContent{
+	position: relative;
+	height: 40rem;
+	width: 100%;
+}
+.weatherContent .masklayer{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	/*height: 2rem;*/
+	height: 100%;
+	/*background-color: darkslateblue;*/
+	background-color: slateblue;
+	/*background-color: #FFFFFF;*/
+	opacity: .4;
+	z-index: 0;
+}
+.weatherContent .State{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 3rem;
+	z-index: 100;
+}
+.State .State_nowquality,.State .State_nowhumidity ,.State .State_nowwind{
+	float: left;
+	font-size: 1rem;
+	width: 33.3%;
+	text-align: center;
+}
