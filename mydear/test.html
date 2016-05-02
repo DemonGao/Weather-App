@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body{
+            padding: 0;
+            margin: 0;
+        }
+        canvas{
+            width: 100%;
+        }
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas_draw">    
+         	<p>Your browserdoes not support the canvas element!</p>    
+		</canvas> 
+		<script type="text/javascript">
+		
+		function drawBackText(myCxt,width,height){
+        myCxt.fillStyle="#001122";
+        myCxt.fillRect(0,0,width,height);
+    }
+
+    function drawLines(myCxt,data,width,height){
+        var max = data.reduce(function(pre,cur,inde,arr){
+        	//对数组中的所有元素调用指定的回调函数。该回调函数的返回值为累积结果，并且此返回值在下一次调用该回调函数时作为参数提供。
+            return pre>cur?pre:cur;
+        });
+        var i,len=data.length;
+        var cellHeight=height/max;
+        var cellWeidth=width/len;
+        myCxt.beginPath();
+        myCxt.moveTo(0,height-cellHeight*data[i]);
+        //height*(data[i]/max));
+        for(i=1;i<len;i++){
+            myCxt.lineTo(i*cellWeidth,height-height*(data[i]/max));
+        }
+        myCxt.strokeStyle = 'rgba(255,0,0,0.5)';
+        myCxt.stroke();
+    }
+		var dataObj={"type":"day","tempData":[12,28,16,20,24,16,14,15,15,16,11,16,17,17,20,20,22,11,2,24,12,1,44,11,14,22,10,18,17,15,9,8,6,18,28,10,23,26,18,29,30,31]};　　　　
+
+function draw(){
+        var myCav=document.getElementById("canvas_draw");
+        var myCxt=myCav.getContext("2d");
+        var width=myCav.scrollWidth;
+        var height=myCav.scrollHeight;
+        myCav.width=width;
+        myCav.height=height;
+        drawBackText(myCxt,width,height);
+        drawLines(myCxt,dataObj.tempData,width,height);
+    }
+    window.onload=draw();	
+		</script>
+	</body>
+</html>

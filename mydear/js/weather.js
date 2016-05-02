@@ -46,9 +46,13 @@ var Weather_get = function() {
 					'<div class="State_nowquality">空气质量:' + '&nbsp;' + pm25.pm25.quality +'</div>' +
 					'<div class="State_nowhumidity">湿度:' + '&nbsp;' + now_weather.humidity +'%</div>' +
 					'<div class="State_nowwind">' + realtime.wind.direct + realtime.wind.power +'</div>'+
+				'</div>'+
+				//7天天气预报
+				'<div class="Week">'+
+					'<canvas id="canvas" >不支持</canvas>'+
 				'</div>';
-
 			//获取容器	
+			
 			var box = document.getElementById('box');
 			//判断容器中是否已存在子容器,若存在则清除
 			while (box.firstChild) {
@@ -61,6 +65,9 @@ var Weather_get = function() {
 			weatherBox.appendChild(weatherTitle);
 			//将天气内容放到天气盒子中
 			weatherBox.appendChild(weatherContent);
+			//绘制天气走势
+			WeatherCanvase(weather);
+			
 			mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 		},
 		error: function(xhr, type, errorThrown) {
