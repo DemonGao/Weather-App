@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="css/weather.css" />
+</head>
+<body>
+    <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li id='box'></li>
+				</ul>
+			</div>
+		</div>
+    <script src="../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/weather_canvas.js"></script>
+    <script type="text/javascript" src="js/weather.js" ></script>
+    <script type="text/javascript">
+    mui.init({
+		pullRefresh: {
+			container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+			down: {
+				contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+				contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+				contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+				callback: Weather_get //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+			}
+		}
+	});
+	document.addEventListener('plusready', plus_ready, false);
+	function plus_ready(){
+		var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+		Weather_get(nwaiting);
+	}
+    </script>
+</body>
+</html>

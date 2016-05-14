@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>头部</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-loader {
+				position: absolute;
+				top: 45%;
+				width: 100%;
+				color: #888;
+				font-size: 14px;
+				text-align: center;
+			}
+			.mui-fadein {
+				opacity: 1;
+			}
+			.mui-fadeout {
+				opacity: 0;
+			}
+			@keyframes fadein {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadein {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeout {
+				from {
+					opacity: 1;
+				}
+				to {
+					opacity: 0;
+				}
+			}
+			@-webkit-keyframes fadeout {
+				from {
+					opacity: 1;
+				}
+				to {
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>
+		<div class="mui-loader">加载中...</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			var titleElem = document.getElementById("title")
+			var menuElem = document.getElementById("menu")
+			window.addEventListener("updateHeader", function(e) {
+				//通过event.detail可获得传递过来的参数内容
+				var title = e.detail.title;
+				var showMenu = e.detail.showMenu;
+				var href = e.detail.target;
+				var aniShow = e.detail.aniShow;
+				titleElem.innerHTML = title;
+				titleElem.className = "mui-title mui-fadein";
+				var display = showMenu ? "" : "none";
+				if (showMenu) {
+					mui.options.keyEventBind.menubutton = true;
+				} else {
+					mui.options.keyEventBind.menubutton = false;
+				}
+				menu.style.display = display;
+				if (mui.os.android && aniShow && parseFloat(mui.os.version) >= 4.4) {
+					if (contentWebview == null) {
+						contentWebview = self.children()[0];
+					}
+					if (contentWebview.getURL() != href) {
+						contentWebview.loadURL(href);
+					} else {
+						contentWebview.show();
+					}
+					setTimeout(function() {
+						self.show(aniShow);
+					}, 10);
+				}
+			});
+		</script>
+	</body>
+
+</html>
